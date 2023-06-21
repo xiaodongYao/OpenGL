@@ -1,4 +1,7 @@
+#include <iostream>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
 
 int main(void)
 {
@@ -18,6 +21,15 @@ int main(void)
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+
+	//必须在上下文下面初始化
+	if (glewInit() != GLEW_OK)
+	{
+		std::cout << "Error!" << std::endl;
+	}
+
+	//输出OpenGL 版本
+	std::cout << glGetString(GL_VERSION) << std::endl;
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
